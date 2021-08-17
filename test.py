@@ -1,8 +1,8 @@
-x= (10)
+x= [10,20]
 print (x)
 print(id(x))
 
-x+=20
+x.append(30)
 
 print (x)
 print(id(x))
