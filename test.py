@@ -1,5 +1,8 @@
-x = 10
-y = x
+x= (10)
+print (x)
+print(id(x))
 
-if id(x) == id(y):
-        print("x and y refer to the same object")
+x+=20
+
+print (x)
+print(id(x))
