@@ -17,7 +17,7 @@ with requests.Session() as s:
     st=r.content.decode()
     print(st)
     start_captcha=st.find('<span class="label-input100" style="font-size: 18px;">')+len('<span class="label-input100" style="font-size: 20px;">')
-    end_captcha=st.find(" = </span>",start_captcha)
+    end_captcha=st.find("=",start_captcha)
     print(st[start_captcha:end_captcha])
     print(str(eval(st[start_captcha:end_captcha])))
     suvzsjv['captcha']=str(eval(st[start_captcha:end_captcha]))
