@@ -5,21 +5,18 @@ import os
 class Table:
     def __init__(self, filename):
         self.filename = filename+".csv"
-        self.open_file = open(self.filename, mode = "r+",newline='')
-        self.reader = list(csv.reader(self.open_file))
-        self.open_file.close()
-        self.open_file = open(self.filename, mode = "w+",newline='')
+        with open(self.filename, mode = "r") as file:
+            self.reader = list(csv.reader(file))
         self.length = len(list(self.reader[0])) if len(list(self.reader))>0 else 0
         
     def create_table(self, **headers):
         self.reader.clear()
         self.reader.append(list(headers.keys()))
-        self.reader.append([str(i) for i in list(headers.values())])
         self.length = len(headers)
         return True
 
     def table_exists(self):
-        return True if len(self.reader)>1 else False
+        return True if len(self.reader)>0 else False
 
     def reset_length(self):
         self.length = len(self.reader[0]) if len(self.reader)>0 else 0
@@ -40,23 +37,39 @@ class Table:
             return True
 
     def commit(self):
-        writer = csv.writer(self.open_file)
-        writer.writerows(self.reader)
+        with open(self.filename,mode = "w") as file:
+            writer = csv.writer(file)
+            writer.writerows(self.reader)
         print(self.reader)
-        self.open_file.close()
-        self.open_file = open(self.filename, mode = "w+",newline='')
         return True
 
     def show_data(self):
         return self.reader
-        
-        
-a = Table("try")
-a.create_table(b = int, c = str)
-for i in range(10):
-    print(a.table_exists())
-    a.add_values(i,i+1)
-print(a.show_data())
-print("-"*10)
-print(a.commit())
-print(a.show_data())
+
+class Variables:
+    def __init__(self, filename):        
+        self.filename = filename
+        self.data = {}
+        if filename in os.listdir():
+            with open(filename, mode = 'rb') as file:
+                self.data = pickle.load(file)
+        else:
+            with open(filename, mode = 'wb') as file:
+                pickle.dump(self.data, file)
+
+    def edit(self, variable_name, value):
+        self.data[variable_name] = value
+        return True
+
+    def pass_all(self, **variables):
+        self.data = variables
+        return True
+
+    def save(self):
+        with open(self.filename, mode = 'wb') as file:
+            pickle.dump(self.data, file)
+            return True
+
+    def show_data(self):
+        return self.data
+
