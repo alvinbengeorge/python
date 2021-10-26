@@ -22,6 +22,7 @@ class Table:
         self.length = len(self.reader[0]) if len(self.reader)>0 else 0
 
     def add_values(self, *values):
+        values = list(values)
         if not self.table_exists():
             return False
         elif len(values) == self.length:
@@ -43,18 +44,22 @@ class Table:
         print(self.reader)
         return True
 
-    def show_data(self):
-        return self.reader
+    def show_data(self, mode = "string"):
+        if mode == "string": [print(i) for i in self.reader]
+        else: return self.reader
+
+    def describe(self):
+        return self.reader[0] if self.table_exists() else []
 
 class Variables:
     def __init__(self, filename):        
-        self.filename = filename
+        self.filename = filename+".dat"
         self.data = {}
-        if filename in os.listdir():
-            with open(filename, mode = 'rb') as file:
+        if self.filename in os.listdir():
+            with open(self.filename, mode = 'rb') as file:
                 self.data = pickle.load(file)
         else:
-            with open(filename, mode = 'wb') as file:
+            with open(self.filename, mode = 'wb') as file:
                 pickle.dump(self.data, file)
 
     def edit(self, variable_name, value):
