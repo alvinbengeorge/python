@@ -10,18 +10,29 @@ class Table:
         self.length = len(list(self.reader[0])) if len(list(self.reader))>0 else 0
         
     def create_table(self, **headers):
+        '''
+        Creates a table
+
+        Warning: Clears the current table
+        '''
         self.reader.clear()
         self.reader.append(list(headers.keys()))
         self.length = len(headers)
         return True
 
     def table_exists(self):
+        '''
+        Checks if Table exists
+        '''
         return True if len(self.reader)>0 else False
 
     def reset_length(self):
         self.length = len(self.reader[0]) if len(self.reader)>0 else 0
 
     def add_values(self, *values):
+        '''
+        adds a row, defaults to None and cuts out if extra values are passes
+        '''
         values = list(values)
         if not self.table_exists():
             return False
@@ -38,6 +49,9 @@ class Table:
             return True
 
     def commit(self):
+        '''
+        saves it to the file
+        '''
         with open(self.filename,mode = "w") as file:
             writer = csv.writer(file)
             writer.writerows(self.reader)
@@ -45,8 +59,11 @@ class Table:
         return True
 
     def show_data(self, mode = "string"):
+        '''
+        pass mode = "dict" for getting the data as a dictionary, or use mode = "string"(default)
+        '''
         if mode == "string": [print(i) for i in self.reader]
-        else: return self.reader
+        elif mode == "dict": return self.reader
 
     def describe(self):
         return self.reader[0] if self.table_exists() else []
@@ -62,8 +79,9 @@ class Variables:
             with open(self.filename, mode = 'wb') as file:
                 pickle.dump(self.data, file)
 
-    def edit(self, variable_name, value):
-        self.data[variable_name] = value
+    def edit(self, **variables):
+        for i in variables:
+            self.data[i] = variables[i]
         return True
 
     def pass_all(self, **variables):
