@@ -96,3 +96,8 @@ class Variables:
     def show_data(self):
         return self.data
 
+    def show_all_variables(self):
+        return list(self.data.keys())
+
+    
+
