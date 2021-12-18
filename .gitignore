@@ -2,3 +2,4 @@
 .env
 *.dat
 *.txt
+__pycache__/
