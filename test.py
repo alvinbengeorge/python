@@ -1,8 +1,5 @@
-x= [10,20]
-print (x)
-print(id(x))
+print("Hello world")
 
-x.append(30)
+a, b = 5, 6
 
-print (x)
-print(id(x))
+print(a+b)
