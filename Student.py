@@ -1,5 +1,4 @@
-class DictionaryData:
-    
+class DictionaryData:    
     def __init__(self):
         self.dictionary = {}
         
