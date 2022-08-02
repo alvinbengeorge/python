@@ -3,3 +3,4 @@
 *.dat
 *.txt
 __pycache__/
+MySQL_helper/main.py
