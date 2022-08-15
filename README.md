@@ -1,2 +1,2 @@
-# python
-This repository contains all the Python programs that I did in 11th and 12th
+# `Hello world` 🎈
+This is my python repository, I try things here
