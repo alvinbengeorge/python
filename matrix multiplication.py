@@ -52,8 +52,14 @@ class Matrix:
                 )
         return return_list
 
+    def dotProduct(self):
+        if self.A_ORDER != self.B_ORDER:
+            return
+        return sum([self.a[i][i] * self.b[i][i] for i in range(self.A_ORDER[0])])
 
-matrix = Matrix([[1, 0], [0, 1]], [[2, 3], [4, 5]])
-print(*matrix.multiply(), sep="\n")
-print()
-print(*matrix.add(), sep="\n")
+
+if __name__ == "__main__":
+    matrix = Matrix([[1, 0], [0, 1]], [[2, 3], [4, 5]])
+    print(*matrix.multiply(), sep="\n")
+    print()
+    print(*matrix.add(), sep="\n")
