@@ -1,4 +1,5 @@
-a = 10
-b = 4
-print("Fraction: ", a//b, a%b, "/", b)
-
+a: int = 10
+b: str = "4"
+c: list = [1, "alvin"]
+a, b = c
+print(a, b)
