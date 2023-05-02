@@ -1,5 +1,5 @@
 *.csv
-.env
+*/.env
 *.dat
 *.txt
 __pycache__/
