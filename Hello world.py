@@ -1,5 +1,6 @@
-a: int = 10
-b: str = "4"
-c: list = [1, "alvin"]
-a, b = c
-print(a, b)
+import numpy as np
+my_arr = np.arange(1000000)
+my_list = list(range(1000000))
+
+print(type(my_arr))
+print(type(my_list))
