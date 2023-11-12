@@ -5,4 +5,4 @@
 __pycache__/
 MySQL_helper/main.py
 AI/faceDetection/images
-*/venv
+./venv/
